@@ -1,0 +1,10 @@
+gCosm- application for receiving data from android mobile phones. Video format AV1 + data get from mobile sensors. 
+
+    Options:
+    -h -help
+    -config -lists config file- program driver, placing [-argument] [value] after it, causes change in config.json file
+    -lp -listening port
+    -s -save path
+
+    Created at: 2021 by Michal Switala
+    
