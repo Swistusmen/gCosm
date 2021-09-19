@@ -4,7 +4,12 @@ gCosm- application for receiving data from android mobile phones. Video format A
     -h -help
     -config -lists config file- program driver, placing [-argument] [value] after it, causes change in config.json file
     -lp -listening port
-    -s -save path
+    -sf -path to save a file
+    -p -streaming protocol: for now rtsp
+    -ds -argument may be send or receive- whether gCosm will work as sender or receiver
+    -ap - adress path on which server should listening
+    -sd -sensor data- whether they should be send or not
+
 
     Created at: 2021 by Michal Switala
     

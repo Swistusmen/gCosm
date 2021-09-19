@@ -4,7 +4,7 @@
 "LoadFile":"",
 "Protocol":"rtsp",
 "DoSend": "send",
-"AdressPath": "/test",
+"AddressPath": "/test",
 "IpAddres": "127.0.0.1",
 "SensorsData": "None"
 }

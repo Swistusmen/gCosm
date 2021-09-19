@@ -158,5 +158,10 @@ void Parser::saveJson(std::map<std::string,std::string> jsonToSave)
 void Parser::mapJsonToConfigObject(ProgramConfig& config)
 {
     config.ListeningPort=std::stoi(json["ListeningPort"]);
-    config.Save=json["Save"];
+    config.SaveFile=json["SaveFile"];
+    config.LoadFile=json["LoadFile"];
+    config.Protocol=json["Protocol"];
+    config.DoSend= (json["DoSend"]=="send"||json["DoSend"]=="Send")?true:false;
+    config.AddressPath=json["AddressPath"];
+    config.IpAddress=json["IpAddress"];
 }
