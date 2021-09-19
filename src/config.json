@@ -1,4 +1,10 @@
 {
 "ListeningPort": "8080",
-"Save": "/home/michal/Documents/Inzynierka/saves"
+"SaveFile": "/home/michal/Documents/Inzynierka/saves",
+"LoadFile":"",
+"Protocol":"rtsp",
+"DoSend": "send",
+"AdressPath": "/test",
+"IpAddres": "127.0.0.1",
+"SensorsData": "None"
 }
