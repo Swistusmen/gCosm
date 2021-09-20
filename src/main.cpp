@@ -1,5 +1,6 @@
 #include "parser.h"
 #include "test.h"
+#include "Server/Server.h"
 #include <iostream>
 
 int main(int argc,char* argv[])

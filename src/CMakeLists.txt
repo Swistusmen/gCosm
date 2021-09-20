@@ -27,14 +27,27 @@ include_directories(
 )
 
 include_directories(Parser
+Common 
+Server/RTSP
+Server/AudioVideoSources  
+Server
 RTSP)
 
 add_executable(gCosm main.cpp 
 Parser/parser.cpp 
 Parser/parser.h
-Parser/ProgramConfig.h
+Common/ProgramConfig.h
+Common/DataChunk.h
 RTSP/test.cpp 
-RTSP/test.h)
+RTSP/test.h
+Server/Server.h 
+Server/StreamingServer.h 
+Server/RTSP/RTSPServer.h 
+Server/RTSP/RTSPStream.h 
+Server/AudioVideoSources/SourceFactory.h 
+Server/AudioVideoSources/SavedFilm.h 
+Server/AudioVideoSources/AudioVideoSource.h
+)
 
 target_link_libraries(${PROJECT_NAME} ${GSTREAMER_LIBRARIES})
 

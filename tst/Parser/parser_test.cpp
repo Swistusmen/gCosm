@@ -38,7 +38,7 @@ TEST(PARSER,RUN_WITH_ANOTHER_SAVE)
     auto a=parser.createProgramDriver(argc,argv);
     ASSERT_EQ(a.doStream,true);
     ASSERT_EQ(a.message,"");
-    ASSERT_EQ(a.Save,"8080");
+    ASSERT_EQ(a.SaveFile,"8080");
 }
 
 TEST(PARSER,RUN_WITH_ANOTHER_SAVE_AND_PORT)
@@ -54,7 +54,7 @@ TEST(PARSER,RUN_WITH_ANOTHER_SAVE_AND_PORT)
     auto a=parser.createProgramDriver(argc,argv);
     ASSERT_EQ(a.doStream,true);
     ASSERT_EQ(a.message,"");
-    ASSERT_EQ(a.Save,"8080");
+    ASSERT_EQ(a.SaveFile,"8080");
     ASSERT_EQ(a.ListeningPort,8080);
 }
 
@@ -109,11 +109,11 @@ TEST(PARSER,SAVE_ARGUMENT)
     int argc2=4;
     parser.createProgramDriver(argc2,argv2);
     auto b=parser.createProgramDriver(argc,argv);
-    ASSERT_NE(a.Save,b.Save);
-    argv2[3]=&a.Save[0];
+    ASSERT_NE(a.SaveFile,b.SaveFile);
+    argv2[3]=&a.SaveFile[0];
     parser.createProgramDriver(argc2,argv2);
     b=parser.createProgramDriver(argc,argv);
-    ASSERT_NE(a.Save,b.Save);
+    ASSERT_NE(a.SaveFile,b.SaveFile);
 }
 
 
