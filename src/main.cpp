@@ -9,9 +9,14 @@ int main(int argc,char* argv[])
     auto driver=parser.createProgramDriver(argc,argv);
     std::cout<<driver.message;
     if(driver.doStream){
+        /*
         gst_init(&argc,&argv);
         TestRunner testRunner("rabbit.mp4");
         testRunner.run();
+        */
+       std::cout<<"Hello\n";
+        Server server(driver);
+        server.run();
     }
     return 0;
 }

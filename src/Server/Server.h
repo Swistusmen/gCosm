@@ -1,6 +1,6 @@
 #pragma once
 #include <memory>
-#include "RTSPServer.h"
+#include "RTSP/RTSPServer.h"
 #include "../Common/DataChunk.h"
 
 class Server{
@@ -12,4 +12,5 @@ class Server{
 
     private:
         std::unique_ptr<StreamingServer> streamingServer;
+        DataChunk data;
 };

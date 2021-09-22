@@ -2,7 +2,7 @@
 #include <string>
 
 struct ProgramConfig{
-    int ListeningPort=-1;
+    std::string ListeningPort="";
     std::string SaveFile="";
     std::string LoadFile="";
     std::string Protocol="rtsp";

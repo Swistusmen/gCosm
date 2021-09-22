@@ -1,17 +1,43 @@
+#pragma once
+#include <vector>
+
+#include <gst/rtsp-server/rtsp-server.h>
+
 #include "../StreamingServer.h"
 #include "../AudioVideoSources/SourceFactory.h"
-#include "RTSPStream.h"
-#include <map>
+#include "RTSPSession.h"
+
+#include <iostream>
+
+//TODO- extend destructr-check how freeing port should work
 
 class RTSPServer:public StreamingServer{
     public:
-        RTSPServer(ProgramConfig driver);
+        RTSPServer(ProgramConfig driver, DataChunk& chunk);
         ~RTSPServer();
 
+        void run() override;
+
+        GstRTSPMediaFactory* getFactory(){return factory;}
+        void prepareMedia(GstRTSPMedia * media);
     private:
-        void setup_streams();
-        
+        void setupStreams();
+        /*
+        static void mediaConfigured(GstRTSPMediaFactory * factory, RTSPServer* ptr);
+        static void mediaPrepared(GstRTSPMedia * media, RTSPServer* pointer);
+        */
+
+       static void media_prepared_cb (GstRTSPMedia * media);
+       static void media_configure_cb (GstRTSPMediaFactory * factory, GstRTSPMedia * media);
+
     private:
-        SourceFactory sourceFactory;
-        RTSPStream stream;
+        //std::shared_ptr<SourceFactory> sourceFactory;
+        std::shared_ptr<AudioVideoSource> source;
+        //std::vector<std::unique_ptr<RTSPSession>> streams;
+        std::vector<RTSPSession*> streams;
+
+        GMainLoop *loop;
+        GstRTSPServer *server;
+        GstRTSPMountPoints *mounts;
+        GstRTSPMediaFactory *factory;
 };

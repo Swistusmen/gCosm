@@ -157,7 +157,7 @@ void Parser::saveJson(std::map<std::string,std::string> jsonToSave)
 
 void Parser::mapJsonToConfigObject(ProgramConfig& config)
 {
-    config.ListeningPort=std::stoi(json["ListeningPort"]);
+    config.ListeningPort=json["ListeningPort"];
     config.SaveFile=json["SaveFile"];
     config.LoadFile=json["LoadFile"];
     config.Protocol=json["Protocol"];

@@ -41,11 +41,15 @@ Common/DataChunk.h
 RTSP/test.cpp 
 RTSP/test.h
 Server/Server.h 
+Server/Server.cpp
 Server/StreamingServer.h 
+Server/StreamingServer.cpp
 Server/RTSP/RTSPServer.h 
-Server/RTSP/RTSPStream.h 
+Server/RTSP/RTSPServer.cpp 
+Server/RTSP/RTSPSession.h 
 Server/AudioVideoSources/SourceFactory.h 
 Server/AudioVideoSources/SavedFilm.h 
+Server/AudioVideoSources/SavedFilm.cpp
 Server/AudioVideoSources/AudioVideoSource.h
 )
 

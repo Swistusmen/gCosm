@@ -1,12 +1,16 @@
+#pragma once
 #include <string>
+
+#include <gst/gst.h>
+
+#include "../../Common/ProgramConfig.h"
 
 class AudioVideoSource{
     public:
-        AudioVideoSource();
-        ~AudioVideoSource();
+        AudioVideoSource(ProgramConfig driver){};
 
-        virtual std::string getLaunchDescription();
+        gchar* getLaunchDescription(){return launch;};
 
     protected:
-        std::string launch;
+        gchar* launch;
 };
