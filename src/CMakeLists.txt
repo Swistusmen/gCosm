@@ -38,8 +38,6 @@ Parser/parser.cpp
 Parser/parser.h
 Common/ProgramConfig.h
 Common/DataChunk.h
-RTSP/test.cpp 
-RTSP/test.h
 Server/Server.h 
 Server/Server.cpp
 Server/StreamingServer.h 

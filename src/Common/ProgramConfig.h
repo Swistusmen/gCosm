@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <map>
 
 struct ProgramConfig{
     std::string ListeningPort="";
@@ -22,5 +23,15 @@ struct ProgramConfig{
             +"AddressPath: "+ AddressPath+"\n"
             +"IpAddress: "+IpAddress+"\n";
             return result;
+    }
+
+    void mapJson(std::map<std::string,std::string> json){
+        SaveFile=json["SaveFile"];
+        ListeningPort=json["ListeningPort"];
+        LoadFile=json["LoadFile"];
+        Protocol=json["Protocol"];
+        DoSend= (json["DoSend"]=="send"||json["DoSend"]=="Send")?true:false;
+        AddressPath=json["AddressPath"];
+        IpAddress=json["IpAddress"];
     }
 };

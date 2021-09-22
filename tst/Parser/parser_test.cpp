@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include "../../src/Parser/parser.cpp"
+#include "../../src/Common/ProgramConfig.h"
 
 
 TEST(PARSER,EMPTY_COMMAND)
@@ -24,7 +25,7 @@ TEST(PARSER,RUN_WITH_ANOTHER_PORT)
     auto a=parser.createProgramDriver(argc,argv);
     ASSERT_EQ(a.doStream,true);
     ASSERT_EQ(a.message,"");
-    ASSERT_EQ(a.ListeningPort,8080);
+    ASSERT_EQ(a.ListeningPort,"8080");
 }
 
 TEST(PARSER,RUN_WITH_ANOTHER_SAVE)
@@ -55,7 +56,7 @@ TEST(PARSER,RUN_WITH_ANOTHER_SAVE_AND_PORT)
     ASSERT_EQ(a.doStream,true);
     ASSERT_EQ(a.message,"");
     ASSERT_EQ(a.SaveFile,"8080");
-    ASSERT_EQ(a.ListeningPort,8080);
+    ASSERT_EQ(a.ListeningPort,"8080");
 }
 
 TEST(PARSER,RUN_CONFIG)

@@ -16,7 +16,7 @@ ProgramConfig Parser::createProgramDriver(int argc, char*argv[])
         json=getConfigObject();
         if(config.doStream= processConfigSetupOperation(args)){
             updateConfigObject(args);
-            mapJsonToConfigObject(config); 
+            config.mapJson(json);
         }
     }else{
         config.message="error "+args["error"];
@@ -153,15 +153,4 @@ void Parser::saveJson(std::map<std::string,std::string> jsonToSave)
         file<<"\n}"; 
     }
     file.close();
-}
-
-void Parser::mapJsonToConfigObject(ProgramConfig& config)
-{
-    config.ListeningPort=json["ListeningPort"];
-    config.SaveFile=json["SaveFile"];
-    config.LoadFile=json["LoadFile"];
-    config.Protocol=json["Protocol"];
-    config.DoSend= (json["DoSend"]=="send"||json["DoSend"]=="Send")?true:false;
-    config.AddressPath=json["AddressPath"];
-    config.IpAddress=json["IpAddress"];
 }

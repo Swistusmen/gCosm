@@ -10,6 +10,7 @@ enable_testing()
 
 add_executable(gCosmTest 
     main_test.cpp
-    Parser/parser_test.cpp)
+    Parser/parser_test.cpp
+)
 
 target_link_libraries(gCosmTest ${GTEST_LIBRARIES} pthread)

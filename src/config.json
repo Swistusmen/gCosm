@@ -1,10 +1,10 @@
 {
 "ListeningPort": "8080",
 "SaveFile": "/home/michal/Documents/Inzynierka/saves",
-"LoadFile":"",
+"LoadFile":"rabbit.mp4",
 "Protocol":"rtsp",
 "DoSend": "send",
 "AddressPath": "/test",
-"IpAddres": "127.0.0.1",
+"IpAddress": "127.0.0.1",
 "SensorsData": "None"
 }
