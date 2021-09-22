@@ -9,7 +9,7 @@ class AudioVideoSource{
     public:
         AudioVideoSource(ProgramConfig driver){};
 
-        gchar* getLaunchDescription(){return launch;};
+        gchar getLaunchDescription(){return *launch;};
 
     protected:
         gchar* launch;

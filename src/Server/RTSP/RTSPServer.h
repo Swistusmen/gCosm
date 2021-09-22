@@ -22,14 +22,9 @@ class RTSPServer:public StreamingServer{
         void prepareMedia(GstRTSPMedia * media);
     private:
         void setupStreams();
-        /*
+        
         static void mediaConfigured(GstRTSPMediaFactory * factory, RTSPServer* ptr);
         static void mediaPrepared(GstRTSPMedia * media, RTSPServer* pointer);
-        */
-
-       static void media_prepared_cb (GstRTSPMedia * media);
-       static void media_configure_cb (GstRTSPMediaFactory * factory, GstRTSPMedia * media);
-
     private:
         //std::shared_ptr<SourceFactory> sourceFactory;
         std::shared_ptr<AudioVideoSource> source;
