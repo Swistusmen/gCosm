@@ -5,7 +5,6 @@ RTSPServer::RTSPServer(ProgramConfig driver, DataChunk& chunk):StreamingServer(d
     loop=g_main_loop_new(NULL,FALSE);
     server=gst_rtsp_server_new();
 
-    driver.IpAddress="127.0.0.1";
     gst_rtsp_server_set_address(server,driver.IpAddress.c_str());
     gst_rtsp_server_set_service(server,driver.ListeningPort.c_str());
     mounts=gst_rtsp_server_get_mount_points(server);
@@ -27,20 +26,9 @@ void RTSPServer::run(){
 }
 
 void RTSPServer::setupStreams(){
-    //in the future it should be  deleted
-    auto c=std::string("rabbit.mp4").c_str();
-    gchar* pipelineDescription= g_strdup_printf ("( "
-      "filesrc location=\"%s\" ! qtdemux name=d "
-      "d. ! queue ! rtph264pay pt=96 name=pay0 "
-      "d. ! queue ! rtpmp4apay pt=97 name=pay1 " ")",c );
-      
-
-    //source->getLaunchDescription();
-    gst_rtsp_media_factory_set_launch (factory, pipelineDescription);
+    std::string pipelineDescription=source->getLaunchDescription();
+    gst_rtsp_media_factory_set_launch (factory, pipelineDescription.c_str());
     g_signal_connect(factory, "media-configure", (GCallback) mediaConfigured, this);
-    g_free(pipelineDescription);
-    
-
     gst_rtsp_mount_points_add_factory(mounts,ipPath.c_str(),factory);
     g_object_unref(mounts);
     gst_rtsp_server_attach (server, NULL);

@@ -8,7 +8,6 @@ int main(int argc,char* argv[])
     auto driver=parser.createProgramDriver(argc,argv);
     std::cout<<driver.message;
     if(driver.doStream){
-        std::cout<<driver.print()<<"\n";
         Server server(driver);
         server.run();
     }

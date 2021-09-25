@@ -9,8 +9,8 @@ class AudioVideoSource{
     public:
         AudioVideoSource(ProgramConfig driver){};
 
-        gchar getLaunchDescription(){return *launch;};
+        std::string getLaunchDescription(){return launch;};
 
     protected:
-        gchar* launch;
+        std::string launch;
 };
