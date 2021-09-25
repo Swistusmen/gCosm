@@ -13,6 +13,6 @@ class StreamingServer{
         std::string ipPath;
         std::string port;
         std::string filepath;
-
+        
         DataChunk& file;
 };

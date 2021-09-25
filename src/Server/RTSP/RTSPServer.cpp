@@ -19,13 +19,15 @@ RTSPServer::~RTSPServer(){
 }
 
 void RTSPServer::run(){
-    setupStreams();
-    std::cout<<gst_rtsp_server_get_address(server)<<std::endl;
-    std::cout<<gst_rtsp_server_get_service(server)<<std::endl;
+    if(source->doSourceSend()){
+        setupStreamsForSending();
+    }else{
+        setupStreamsForListening();
+    }
     g_main_loop_run(loop);
 }
 
-void RTSPServer::setupStreams(){
+void RTSPServer::setupStreamsForSending(){
     std::string pipelineDescription=source->getLaunchDescription();
     gst_rtsp_media_factory_set_launch (factory, pipelineDescription.c_str());
     g_signal_connect(factory, "media-configure", (GCallback) mediaConfigured, this);
@@ -34,6 +36,12 @@ void RTSPServer::setupStreams(){
     gst_rtsp_server_attach (server, NULL);
 }
 
+void RTSPServer::setupStreamsForListening(){
+    // https://cpp.hotexamples.com/examples/-/-/gst_app_sink_set_callbacks/cpp-gst_app_sink_set_callbacks-function-examples.html
+    std::string pipelineDescription=source->getLaunchDescription();
+    gst_rtsp_media_factory_set_launch(factory,pipelineDescription.c_str());
+    
+}
 
 void RTSPServer::mediaPrepared(GstRTSPMedia * media,RTSPServer* pointer)
 {

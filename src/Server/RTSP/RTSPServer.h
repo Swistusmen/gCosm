@@ -21,14 +21,16 @@ class RTSPServer:public StreamingServer{
         GstRTSPMediaFactory* getFactory(){return factory;}
         void prepareMedia(GstRTSPMedia * media);
     private:
-        void setupStreams();
+        //for listening to a stream
+        void setupStreamsForListening();
+        //for sending streaming
+        void setupStreamsForSending();
         
         static void mediaConfigured(GstRTSPMediaFactory * factory, RTSPServer* ptr);
         static void mediaPrepared(GstRTSPMedia * media, RTSPServer* pointer);
     private:
         //std::shared_ptr<SourceFactory> sourceFactory;
         std::shared_ptr<AudioVideoSource> source;
-        //std::vector<std::unique_ptr<RTSPSession>> streams;
         std::vector<RTSPSession*> streams;
 
         GMainLoop *loop;
