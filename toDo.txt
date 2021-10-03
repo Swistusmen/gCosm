@@ -1,0 +1,9 @@
+1. Make sure receviveng works
+    -works but need to end receiving after video is downloaded
+2. Test it on bigger amount of samples
+3. Make changes if needed- let app to receive AV1 format,mpeg format and others
+    -
+4. Write tests
+5. Improve code:
+    -destroying and freeing ports
+    -project patterns

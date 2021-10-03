@@ -21,9 +21,7 @@ class RTSPServer:public StreamingServer{
         GstRTSPMediaFactory* getFactory(){return factory;}
         void prepareMedia(GstRTSPMedia * media);
     private:
-        //for listening to a stream
         void setupStreamsForListening();
-        //for sending streaming
         void setupStreamsForSending();
         
         static void mediaConfigured(GstRTSPMediaFactory * factory, RTSPServer* ptr);
@@ -34,6 +32,8 @@ class RTSPServer:public StreamingServer{
         std::vector<RTSPSession*> streams;
 
         GMainLoop *loop;
+        GError* error=nullptr;
+        GstElement* pipeline=nullptr;
         GstRTSPServer *server;
         GstRTSPMountPoints *mounts;
         GstRTSPMediaFactory *factory;

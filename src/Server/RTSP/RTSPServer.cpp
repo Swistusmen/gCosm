@@ -16,6 +16,11 @@ RTSPServer::RTSPServer(ProgramConfig driver, DataChunk& chunk):StreamingServer(d
 RTSPServer::~RTSPServer(){
     if(streams.size())
         streams.clear();
+    if(pipeline){
+        gst_element_set_state(pipeline,GST_STATE_NULL);
+        gst_object_unref(pipeline);
+    }
+    g_main_loop_unref(loop);
 }
 
 void RTSPServer::run(){
@@ -39,8 +44,11 @@ void RTSPServer::setupStreamsForSending(){
 void RTSPServer::setupStreamsForListening(){
     // https://cpp.hotexamples.com/examples/-/-/gst_app_sink_set_callbacks/cpp-gst_app_sink_set_callbacks-function-examples.html
     std::string pipelineDescription=source->getLaunchDescription();
-    gst_rtsp_media_factory_set_launch(factory,pipelineDescription.c_str());
-    
+    pipeline = gst_parse_launch_full (pipelineDescription.c_str(), NULL, GST_PARSE_FLAG_FATAL_ERRORS, &error);
+    if (!pipeline || error) {
+        g_printerr ("Unable to build pipeline: %s", error->message ? error->message : "(no debug)");
+    }
+    gst_element_set_state(pipeline, GST_STATE_PLAYING);
 }
 
 void RTSPServer::mediaPrepared(GstRTSPMedia * media,RTSPServer* pointer)
