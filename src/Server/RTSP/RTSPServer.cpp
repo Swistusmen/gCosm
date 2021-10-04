@@ -48,6 +48,10 @@ void RTSPServer::setupStreamsForListening(){
     if (!pipeline || error) {
         g_printerr ("Unable to build pipeline: %s", error->message ? error->message : "(no debug)");
     }
+    bus=gst_element_get_bus(pipeline);
+    gst_bus_add_signal_watch(bus);
+    g_signal_connect( G_OBJECT(bus),"message::eos",(GCallback)endOfStreamSignal,&pipeline);
+    gst_object_unref(bus);
     gst_element_set_state(pipeline, GST_STATE_PLAYING);
 }
 
@@ -61,6 +65,10 @@ void RTSPServer::mediaConfigured(GstRTSPMediaFactory * factory, RTSPServer* ptr)
     g_signal_connect(factory, "prepared", (GCallback) mediaPrepared, ptr);
 }
 
+void RTSPServer::endOfStreamSignal(GstBus* bus, GstMessage* msg){
+    g_printerr("Message from the bus \n");
+    exit (0); //temporary
+}
 
 void RTSPServer::prepareMedia(GstRTSPMedia* media){
     const guint nStreams=gst_rtsp_media_n_streams(media);

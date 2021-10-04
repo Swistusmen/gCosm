@@ -26,15 +26,17 @@ class RTSPServer:public StreamingServer{
         
         static void mediaConfigured(GstRTSPMediaFactory * factory, RTSPServer* ptr);
         static void mediaPrepared(GstRTSPMedia * media, RTSPServer* pointer);
+        static void endOfStreamSignal(GstBus* bus, GstMessage* msg);
     private:
         //std::shared_ptr<SourceFactory> sourceFactory;
         std::shared_ptr<AudioVideoSource> source;
         std::vector<RTSPSession*> streams;
 
-        GMainLoop *loop;
+        GMainLoop *loop=nullptr;
         GError* error=nullptr;
         GstElement* pipeline=nullptr;
-        GstRTSPServer *server;
-        GstRTSPMountPoints *mounts;
-        GstRTSPMediaFactory *factory;
+        GstBus* bus=nullptr;
+        GstRTSPServer *server=nullptr;
+        GstRTSPMountPoints *mounts=nullptr;
+        GstRTSPMediaFactory *factory=nullptr;
 };
