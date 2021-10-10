@@ -42,7 +42,6 @@ void RTSPServer::setupStreamsForSending(){
 }
 
 void RTSPServer::setupStreamsForListening(){
-    // https://cpp.hotexamples.com/examples/-/-/gst_app_sink_set_callbacks/cpp-gst_app_sink_set_callbacks-function-examples.html
     std::string pipelineDescription=source->getLaunchDescription();
     pipeline = gst_parse_launch_full (pipelineDescription.c_str(), NULL, GST_PARSE_FLAG_FATAL_ERRORS, &error);
     if (!pipeline || error) {

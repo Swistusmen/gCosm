@@ -1,9 +1,16 @@
-1. Make sure receviveng works
-    -works but need to end receiving after video is downloaded
-2. Test it on bigger amount of samples
+1. Make sure receviveng works DONE
+2. Test it on bigger amount of samples DONE
 3. Make changes if needed- let app to receive AV1 format,mpeg format and others
-    -
-4. Write tests
+    -napisac pipeline mkv->mp4 (z av1) //jest
+    -napisac konwersje rabbita, tak by byl w av1 w mp4 ->probka av1 z dzwiekiem //jest
+    -test czy dla wideo z av1 dzialaja obecne pipeliny
+    -naprawa pipelinow/ napisanie nowego
+    -przearanzowanie kodu tak by ladnie generowal pipeline
+
+4. Write tests:
+    -testy pythonowe
+
 5. Improve code:
-    -destroying and freeing ports
+    -destroying and freeing ports DONE
     -project patterns
+
