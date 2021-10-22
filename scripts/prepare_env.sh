@@ -7,3 +7,5 @@ sudo apt-get install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgst
 sudo apt-get install libgstrtspserver-1.0-dev gstreamer1.0-rtsp
 #download gtest
 sudo apt-get install libgtest-dev
+#install pytest
+pip install -r uat/requeirements.txt
