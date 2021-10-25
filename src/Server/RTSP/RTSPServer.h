@@ -9,7 +9,7 @@
 
 #include <iostream>
 
-//TODO- extend destructr-check how freeing port should work
+//TODO:- extend destructr-check how freeing port should work
 
 class RTSPServer:public StreamingServer{
     public:
