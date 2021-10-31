@@ -6,5 +6,7 @@
 "DoSend": "send",
 "AddressPath": "/test",
 "IpAddress": "127.0.0.1",
-"SensorsData": "None"
+"SensorsData": "None",
+"TransportContainer": "mp4",
+"VideoCodec":"264"
 }

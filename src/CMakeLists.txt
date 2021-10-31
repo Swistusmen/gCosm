@@ -38,6 +38,7 @@ Parser/parser.cpp
 Parser/parser.h
 Common/ProgramConfig.h
 Common/DataChunk.h
+Common/Utilities.h
 Server/Server.h 
 Server/Server.cpp
 Server/StreamingServer.h 
@@ -49,6 +50,8 @@ Server/AudioVideoSources/SourceFactory.h
 Server/AudioVideoSources/SavedFilm.h 
 Server/AudioVideoSources/SavedFilm.cpp
 Server/AudioVideoSources/AudioVideoSource.h
+Server/HLS/HLSServer.h 
+Server/HLS/HLSServer.cpp
 )
 
 target_link_libraries(${PROJECT_NAME} ${GSTREAMER_LIBRARIES})

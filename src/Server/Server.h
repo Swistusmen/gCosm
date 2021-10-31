@@ -1,6 +1,8 @@
 #pragma once
 #include <memory>
 #include "RTSP/RTSPServer.h"
+#include "HLS/HLSServer.h"
+#include "../Common/Utilities.h"
 #include "../Common/DataChunk.h"
 
 class Server{

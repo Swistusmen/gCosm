@@ -2,8 +2,9 @@
 
 Server::Server(ProgramConfig driver){
     //#TODO -change when next servers will be added
-    if(driver.Protocol=="rtsp")
+    if(driver.SProtocol==Protocol::RTSP)
         streamingServer= std::make_unique<RTSPServer>(driver,data);
+    
 }
 
 Server::~Server(){
