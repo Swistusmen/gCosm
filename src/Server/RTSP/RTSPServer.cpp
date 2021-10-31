@@ -1,6 +1,6 @@
 #include "RTSPServer.h"
 
-RTSPServer::RTSPServer(ProgramConfig driver, DataChunk& chunk):StreamingServer(driver,chunk){
+RTSPServer::RTSPServer(ProgramConfig driver, DataChunk& chunk,std::shared_ptr<PipelineManager> pipManager):StreamingServer(driver,chunk,pipManager){
     gst_init(NULL,NULL);
     loop=g_main_loop_new(NULL,FALSE);
     server=gst_rtsp_server_new();
@@ -9,8 +9,6 @@ RTSPServer::RTSPServer(ProgramConfig driver, DataChunk& chunk):StreamingServer(d
     gst_rtsp_server_set_service(server,driver.ListeningPort.c_str());
     mounts=gst_rtsp_server_get_mount_points(server);
     factory=gst_rtsp_media_factory_new();
-
-    source=std::make_shared<SavedFilm>(driver);
 }
 
 RTSPServer::~RTSPServer(){
@@ -24,7 +22,7 @@ RTSPServer::~RTSPServer(){
 }
 
 void RTSPServer::run(){
-    if(source->doSourceSend()){
+    if(pipelineManager->doSend()){
         setupStreamsForSending();
     }else{
         setupStreamsForListening();
@@ -33,7 +31,7 @@ void RTSPServer::run(){
 }
 
 void RTSPServer::setupStreamsForSending(){
-    std::string pipelineDescription=source->getLaunchDescription();
+    std::string pipelineDescription=pipelineManager->getPipeline();
     gst_rtsp_media_factory_set_launch (factory, pipelineDescription.c_str());
     g_signal_connect(factory, "media-configure", (GCallback) mediaConfigured, this);
     gst_rtsp_mount_points_add_factory(mounts,ipPath.c_str(),factory);
@@ -42,7 +40,7 @@ void RTSPServer::setupStreamsForSending(){
 }
 
 void RTSPServer::setupStreamsForListening(){
-    std::string pipelineDescription=source->getLaunchDescription();
+    std::string pipelineDescription=pipelineManager->getPipeline();
     pipeline = gst_parse_launch_full (pipelineDescription.c_str(), NULL, GST_PARSE_FLAG_FATAL_ERRORS, &error);
     if (!pipeline || error) {
         g_printerr ("Unable to build pipeline: %s", error->message ? error->message : "(no debug)");

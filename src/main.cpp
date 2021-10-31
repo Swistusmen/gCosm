@@ -1,5 +1,6 @@
 #include "Parser/parser.h"
 #include "Server/Server.h"
+#include "PipelineManager/PipelineManager.h"
 #include <iostream>
 
 int main(int argc,char* argv[])
@@ -9,7 +10,8 @@ int main(int argc,char* argv[])
     std::cout<<driver.message;
     if(driver.doStream){
         std::cout<<driver.print()<<std::endl;
-        Server server(driver);
+        auto pipelineManager=std::make_shared<PipelineManager>(driver);
+        Server server(driver,pipelineManager);
         server.run();
     }
     return 0;

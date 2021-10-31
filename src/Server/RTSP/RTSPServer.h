@@ -4,7 +4,6 @@
 #include <gst/rtsp-server/rtsp-server.h>
 
 #include "../StreamingServer.h"
-#include "../AudioVideoSources/SourceFactory.h"
 #include "RTSPSession.h"
 
 #include <iostream>
@@ -13,7 +12,7 @@
 
 class RTSPServer:public StreamingServer{
     public:
-        RTSPServer(ProgramConfig driver, DataChunk& chunk);
+        RTSPServer(ProgramConfig driver, DataChunk& chunk,std::shared_ptr<PipelineManager>pipManager);
         ~RTSPServer();
 
         void run() override;
@@ -28,8 +27,6 @@ class RTSPServer:public StreamingServer{
         static void mediaPrepared(GstRTSPMedia * media, RTSPServer* pointer);
         static void endOfStreamSignal(GstBus* bus, GstMessage* msg);
     private:
-        //std::shared_ptr<SourceFactory> sourceFactory;
-        std::shared_ptr<AudioVideoSource> source;
         std::vector<RTSPSession*> streams;
 
         GMainLoop *loop=nullptr;

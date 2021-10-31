@@ -4,10 +4,11 @@
 #include "HLS/HLSServer.h"
 #include "../Common/Utilities.h"
 #include "../Common/DataChunk.h"
+#include "PipelineManager/PipelineManager.h"
 
 class Server{
     public:
-        Server(ProgramConfig driver);
+        Server(ProgramConfig driver, std::shared_ptr<PipelineManager> pipManager);
         ~Server();
 
         DataChunk run();

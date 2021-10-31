@@ -46,12 +46,10 @@ Server/StreamingServer.cpp
 Server/RTSP/RTSPServer.h 
 Server/RTSP/RTSPServer.cpp 
 Server/RTSP/RTSPSession.h 
-Server/AudioVideoSources/SourceFactory.h 
-Server/AudioVideoSources/SavedFilm.h 
-Server/AudioVideoSources/SavedFilm.cpp
-Server/AudioVideoSources/AudioVideoSource.h
 Server/HLS/HLSServer.h 
 Server/HLS/HLSServer.cpp
+Server/PipelineManager/PipelineManager.h 
+Server/PipelineManager/PipelineManager.cpp
 )
 
 target_link_libraries(${PROJECT_NAME} ${GSTREAMER_LIBRARIES})
