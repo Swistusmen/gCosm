@@ -5,6 +5,7 @@
 #include "../Common/Utilities.h"
 #include "../Common/DataChunk.h"
 #include "PipelineManager/PipelineManager.h"
+#include <iostream>
 
 class Server{
     public:

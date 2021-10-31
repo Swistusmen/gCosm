@@ -1,7 +1,7 @@
-1. Add hls server- general 
-2.Add receiving option
+1. Add hls server- general DONE
+2. Add receiving option DONE
 2a. Uat Test
-2b. Unit tests
+2b. Unit tests 
 3.Add streamming option
 3a. Uat
 3b. Unit tests
@@ -12,5 +12,7 @@
 6a. tests
 7. Add transformation options
 7a.tests
-8. Add openCV
+8. Add server states,improve callbacks
+8a. Tests
+9. Add openCV
 

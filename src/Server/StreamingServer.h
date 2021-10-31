@@ -3,10 +3,12 @@
 #include "../Common/ProgramConfig.h"
 #include "PipelineManager/PipelineManager.h"
 #include <memory>
+#include <iostream>
 
 class StreamingServer{
     public:
     StreamingServer(ProgramConfig driver,DataChunk& chunk,std::shared_ptr<PipelineManager> pipManager);
+    ~StreamingServer();
 
     virtual void run()=0;
 
