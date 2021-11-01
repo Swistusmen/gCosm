@@ -1,8 +1,8 @@
 1. Add hls server- general DONE
 2. Add receiving option DONE
-2a. Uat Test
-2b. Unit tests 
-3.Add streamming option
+2a. Uat Test DONE
+2b. Unit tests -Whole server
+3.Add streamming option 
 3a. Uat
 3b. Unit tests
 4. Make Save Film more general 

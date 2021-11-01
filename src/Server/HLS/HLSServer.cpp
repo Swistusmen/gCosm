@@ -16,14 +16,26 @@ HLSServer::~HLSServer(){
 }
 
 void HLSServer::run(){
-    SetupForListening();
+    std::string pipelineDescription=pipelineManager->getPipeline();
+    if(pipelineManager->doSend()){
+        setupForStreamming(pipelineDescription);
+    }else{
+     setupForListening(pipelineDescription);   
+    }
     g_main_loop_run(loop);
 }
 
-void HLSServer::SetupForListening(){
-    std::string pipelineDescription=pipelineManager->getPipeline();
+void HLSServer::setupForListening(std::string pipelineDescription){
     std::cout<<pipelineDescription<<std::endl;
+    pipeline=gst_parse_launch_full (pipelineDescription.c_str(), NULL, GST_PARSE_FLAG_FATAL_ERRORS, &error);
+    if (!pipeline || error) {
+        g_printerr ("Unable to build pipeline: %s", error->message ? error->message : "(no debug)");
+    }
+    gst_element_set_state(pipeline, GST_STATE_PLAYING);
+}
 
+void HLSServer::setupForStreamming(std::string pipelineDescription){
+    std::cout<<pipelineDescription<<std::endl;
     pipeline=gst_parse_launch_full (pipelineDescription.c_str(), NULL, GST_PARSE_FLAG_FATAL_ERRORS, &error);
     if (!pipeline || error) {
         g_printerr ("Unable to build pipeline: %s", error->message ? error->message : "(no debug)");

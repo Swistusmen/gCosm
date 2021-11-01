@@ -11,8 +11,8 @@ class HLSServer: public StreamingServer{
     void run() override;
 
     private:
-    void SetupForListening();
-    void SetupForStreamming();
+    void setupForListening(std::string pipelineDescription);
+    void setupForStreamming(std::string pipelineDescription);
 
     private:
     GMainLoop *loop=nullptr;
