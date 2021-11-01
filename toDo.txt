@@ -1,18 +1,24 @@
-1. Add hls server- general DONE
-2. Add receiving option DONE
-2a. Uat Test DONE
+1. Add hls server- general DONE:
+2. Add receiving option DONE:
+2a. Uat Test DONE:
 2b. Unit tests -Whole server
-3.Add streamming option 
-3a. Uat
+3.Add streamming option DONE:
+3a. Uat DONE:
 3b. Unit tests
-4. Make Save Film more general 
-5. Add mkv 
+4. Make Save Film more general DONE:
+5. Add mkv DONE:
 5a. tests
-6. Add av1
-6a. tests
+6. Add av1 DONE:
+6a. tests DONE:
+-add mkv mp4 streamming receiving
+-add tests- checking formats and codecs
 7. Add transformation options
+-add streamming receiving transformation (formats and codecs)
+-add transcoding (mkv-> mp4)(mp4->mkv), (av1->mp4), (mp4->av1)
+-add scalling and video transforming
 7a.tests
 8. Add server states,improve callbacks
 8a. Tests
-9. Add openCV
+9. Add transcoding option
+10. Add openCV
 
