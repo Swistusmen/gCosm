@@ -24,15 +24,15 @@ def test_rtsp_streamming_goes_on():
 
 def test_hls_mp4_h264_receiving_goes_on():
     streamer=subprocess.Popen("gst-launch-1.0 filesrc location=rabbit.mp4 ! qtdemux name=demux ! queue ! h264parse disable-passthrough=true ! mpegtsmux name=mux ! hlssink playlist-root=http://127.0.0.1:8080 max-files=100 playlist-length=0 demux. ! queue ! aacparse ! mux.",shell=True)
-    receiver=subprocess.Popen("./gCosm -ds receive -p hls -ap playlist.m3u8 -sf test.mp4",shell=True)
+    receiver=subprocess.Popen("./gCosm -ds receive -p hls -ap playlist.m3u8 -sf test1.mp4",shell=True)
     time.sleep(4)
     streamer.kill()
     receiver.kill()
-    fileSize=os.path.getsize("test.mp4")
+    fileSize=os.path.getsize("test1.mp4")
     assert(fileSize!=0)
 
 def test_hls_mp4_h264_codec():
-    discoverer=subprocess.Popen(["gst-discoverer-1.0","test.mp4"],stdout=subprocess.PIPE)
+    discoverer=subprocess.Popen(["gst-discoverer-1.0","test1.mp4"],stdout=subprocess.PIPE)
     stdout=str(discoverer.communicate())
     table=stdout.split(" ")
     if "H.264" in table:

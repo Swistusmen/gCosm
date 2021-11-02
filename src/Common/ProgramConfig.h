@@ -16,6 +16,8 @@ struct ProgramConfig{
     bool doStream=false;
     TransportContainer TContainer=TransportContainer::MP4;
     VideoCodec VCodec= VideoCodec::H264;
+    TransportContainer GTContainer=TransportContainer::None;
+    VideoCodec GVCodec=VideoCodec::None;
 
 
     Protocol mapStringToProctol(std::string protocol){
@@ -27,19 +29,19 @@ struct ProgramConfig{
             return Protocol::None;
     }
 
-    std::string mapProctolToString(){
-        if(SProtocol==Protocol::RTSP)
+    std::string mapProctolToString(Protocol sprot){
+        if(sprot==Protocol::RTSP)
             return "rtsp";
-        else if(SProtocol==Protocol::HLS)
+        else if(sprot==Protocol::HLS)
             return "hls";
         else
             return "none";
     }
 
-    std::string mapTContainerToString(){
-        if(TContainer==TransportContainer::MP4)
+    std::string mapTContainerToString(TransportContainer tcon){
+        if(tcon==TransportContainer::MP4)
             return "mp4";
-        else if(TContainer==TransportContainer::MKV)
+        else if(tcon==TransportContainer::MKV)
             return "mkv";
         else
             return "none";
@@ -63,10 +65,10 @@ struct ProgramConfig{
             return VideoCodec::None;
     }
 
-    std::string mapVCodecToString(){
-        if(VideoCodec::H264==VCodec)
+    std::string mapVCodecToString(VideoCodec v){
+        if(VideoCodec::H264==v)
             return "h264";
-        else if(VideoCodec::AV1==VCodec)
+        else if(VideoCodec::AV1==v)
             return "av1";
         else
             return "none";
@@ -76,12 +78,14 @@ struct ProgramConfig{
         std::string result="ListeningPort: "+ListeningPort+"\n"
             +"SaveFile: "+ SaveFile+"\n"
             +"LoadFile: "+LoadFile+"\n"
-            +"Protocol: "+mapProctolToString()+"\n"
+            +"Protocol: "+mapProctolToString(SProtocol)+"\n"
             +"DoSend: "+(DoSend?"yes":"no")+"\n"
             +"AddressPath: "+ AddressPath+"\n"
             +"IpAddress: "+IpAddress+"\n"
-            +"TransportContainer:"+mapTContainerToString()+"\n"
-            +"VideoCodec:"+mapVCodecToString()+"\n";
+            +"TransportContainer:"+mapTContainerToString(TContainer)+"\n"
+            +"VideoCodec:"+mapVCodecToString(VCodec)+"\n"
+            +"GoalTransportContainer:"+mapTContainerToString(GTContainer)+"\n"
+            +"GoalVideoCodec:"+mapVCodecToString(GVCodec)+"\n";
             return result;
     }
 
@@ -95,5 +99,7 @@ struct ProgramConfig{
         IpAddress=json["IpAddress"];
         TContainer=mapStringToTContainer(json["TransportContainer"]);
         VCodec=mapStringToVCodec(json["VideoCodec"]);
+        GTContainer=mapStringToTContainer(json["GoalTransportContainer"]);
+        GVCodec=mapStringToVCodec(json["GoalVideoCodec"]);
     }
 };

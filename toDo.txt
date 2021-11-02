@@ -11,14 +11,13 @@
 6. Add av1 DONE:
 6a. tests DONE:
 -add mkv mp4 streamming  DONE:
--add tests- checking formats and codecs
+-add tests- checking formats and codecs DONE:
 7. Add transformation options -changing a Pipeline Manager into a pipelineBuilder
--add streamming receiving transformation (formats and codecs)
--add transcoding (mkv-> mp4)(mp4->mkv), (av1->mp4), (mp4->av1)
--add scalling and video transforming
+-add transcoding (mkv-> mp4)(mp4->mkv), (av1->mp4), (mp4->av1) TOTEST: 
+-add scalling and video transforming IMPLEMENT: 2
 7a.tests
-8. Add server states,improve callbacks
+8. Add server states,improve callbacks IMPLEMENT: 1
 8a. Tests
-9. Add transcoding option
+9. Add threads
 10. Add openCV
 

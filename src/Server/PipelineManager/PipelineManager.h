@@ -11,6 +11,8 @@ class PipelineManager{
     std::string getPipeline();
     bool doSend();
 
+    void buildPipeline(ProgramConfig dirver);
+
     private:
         std::string rtspSendMP4H264;
         std::string rtspReceiveMP4H264;
@@ -20,6 +22,8 @@ class PipelineManager{
         std::string hlsReceiveMKVAV1;
         std::string hlsSendMKVH264;
         std::string hlsReceiveMKVH264;
+
+        std::string currentHLSPipeline;
 
         ProgramConfig config;
 };

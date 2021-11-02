@@ -11,16 +11,6 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${SYMPHONY_CXX_FLAGS} -D_GLIBCXX_USE_CXX
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(GSTREAMER REQUIRED gstreamer-1.0 gstreamer-rtsp-server-1.0 REQUIRED)
 
-#add_executable(gCosm "main.cpp")
-
-#include_directories("Parser")
-#add_subdirectory(Parser)
-
-#1
-#set(SOURCES main.cpp)
-#include_directories(Parser)
-#add_executable(gCosm ${SOURCES})
-
 include_directories(
         ${GLIB_INCLUDE_DIRS}
         ${GSTREAMER_INCLUDE_DIRS}
@@ -50,6 +40,8 @@ Server/HLS/HLSServer.h
 Server/HLS/HLSServer.cpp
 Server/PipelineManager/PipelineManager.h 
 Server/PipelineManager/PipelineManager.cpp
+Transcoder/Transcoder.h 
+Transcoder/Transcoder.cpp
 )
 
 target_link_libraries(${PROJECT_NAME} ${GSTREAMER_LIBRARIES})

@@ -1,19 +1,20 @@
 #include "PipelineManager.h"
-// IMPROVE: building pipelines
-// IMPLEMENT: video scalling, transcoding video on receiver site, transcoding video in place
+
 PipelineManager::PipelineManager(ProgramConfig driver){
+    buildPipeline(driver);
+    config=driver;
+}
+
+void PipelineManager::buildPipeline(ProgramConfig driver){
     rtspSendMP4H264="( filesrc location=" + driver.LoadFile+" ! qtdemux name=d d. ! queue ! rtph264pay ! pt=96 name=pay0 d. ! queue ! rtpmp4apay pt=97 name=pay1 )";
-    rtspReceiveMP4H264="rtspsrc location="+driver.mapProctolToString()+"://"+driver.IpAddress+ ":"+driver.ListeningPort  +driver.AddressPath +" name=src src. ! decodebin ! x264enc ! queue ! mp4mux name=mux ! filesink location="+driver.SaveFile+ " src. ! decodebin  ! audioconvert ! voaacenc bitrate=128 ! queue ! mux.";
+    rtspReceiveMP4H264="rtspsrc location=rtsp://"+driver.IpAddress+ ":"+driver.ListeningPort  +driver.AddressPath +" name=src src. ! decodebin ! x264enc ! queue ! mp4mux name=mux ! filesink location="+driver.SaveFile+ " src. ! decodebin  ! audioconvert ! voaacenc bitrate=128 ! queue ! mux.";
     hlsSendMP4H264="filesrc location="+driver.LoadFile+" ! qtdemux name=demux ! queue ! h264parse disable-passthrough=true ! mpegtsmux name=mux ! hlssink playlist-root=http://"+driver.IpAddress+":"+driver.ListeningPort+ " max-files=100 playlist-length=0 demux. ! queue ! aacparse ! mux.";
     hlsReceiveMP4H264=" souphttpsrc location=http://"+driver.IpAddress+":"+driver.ListeningPort+"/"+driver.AddressPath+ " ! hlsdemux ! tsdemux name=demux ! queue ! h264parse ! mp4mux name=mux ! filesink location="+driver.SaveFile+ " demux. ! queue ! aacparse ! mux.";
     hlsSendMKVAV1=" filesrc location="+driver.LoadFile+" ! matroskademux name=demux ! queue ! matroskamux name=mux ! hlssink playlist-root=http://"+driver.IpAddress+":" + driver.ListeningPort+" target-duration=5 max-files=100 demux. ! queue ! aacparse ! mux.";
     hlsReceiveMKVAV1=" souphttpsrc location=http://"+driver.IpAddress+":"+driver.ListeningPort+"/"+driver.AddressPath+" ! hlsdemux ! matroskademux name=demux ! queue  ! matroskamux name=mux ! filesink location="+driver.SaveFile+" demux. ! queue ! aacparse ! mux.";
     hlsSendMKVH264=" filesrc location="+driver.LoadFile+" ! matroskademux name=demux ! queue ! h264parse! matroskamux name=mux ! hlssink playlist-root=http://"+driver.IpAddress+":"+driver.ListeningPort+" target-duration=5 max-files=100 demux. ! queue ! aacparse ! mux.";
-    
-    config=driver;
 }
 
-//IMPROVE: 
 std::string PipelineManager::getPipeline(){
     if(config.SProtocol==Protocol::RTSP){
         if(config.DoSend==true){

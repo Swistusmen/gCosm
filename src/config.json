@@ -8,5 +8,7 @@
 "IpAddress": "127.0.0.1",
 "SensorsData": "None",
 "TransportContainer": "mp4",
-"VideoCodec":"h264"
+"VideoCodec":"h264",
+"GoalTransportContainer":"none",
+"GoalVideoCodec":"none"
 }
