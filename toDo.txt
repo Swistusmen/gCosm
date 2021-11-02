@@ -10,9 +10,9 @@
 5a. tests
 6. Add av1 DONE:
 6a. tests DONE:
--add mkv mp4 streamming receiving
+-add mkv mp4 streamming  DONE:
 -add tests- checking formats and codecs
-7. Add transformation options
+7. Add transformation options -changing a Pipeline Manager into a pipelineBuilder
 -add streamming receiving transformation (formats and codecs)
 -add transcoding (mkv-> mp4)(mp4->mkv), (av1->mp4), (mp4->av1)
 -add scalling and video transforming
