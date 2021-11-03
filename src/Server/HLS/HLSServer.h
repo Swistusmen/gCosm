@@ -3,6 +3,8 @@
 #include <gst/gst.h>
 #include <iostream>
 
+static GMainLoop *loop=nullptr;
+
 class HLSServer: public StreamingServer{
     public:
     HLSServer(ProgramConfig config, DataChunk& dataChunk,std::shared_ptr<PipelineManager> pipManager);
@@ -11,11 +13,11 @@ class HLSServer: public StreamingServer{
     void run() override;
 
     private:
-    void setupForListening(std::string pipelineDescription);
-    void setupForStreamming(std::string pipelineDescription);
+    void setupPipeline(std::string pipelineDescription);
+
+    static void onEOSCallback(GstBus* bus, GstElement* pipeline);
 
     private:
-    GMainLoop *loop=nullptr;
     GError* error=nullptr;
     GstElement* pipeline=nullptr;
     GstBus* bus=nullptr;

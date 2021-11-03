@@ -7,17 +7,15 @@ Server::Server(ProgramConfig driver, std::shared_ptr<PipelineManager> pipManager
     else if(driver.SProtocol==Protocol::HLS){
         streamingServer=std::make_unique<HLSServer>(driver,data,pipManager);
     }
-    
 }
 
 Server::~Server(){
-
+    
 }
 
 DataChunk Server::run(){
     DataChunk dataChunk;
-    streamingServer->run();
-     //tutaj musi byc  odpalenie watku z serverer i jego funkcja run
-
+    if(streamingServer)
+        streamingServer->run();
     return dataChunk;
 }

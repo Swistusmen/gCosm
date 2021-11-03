@@ -6,4 +6,4 @@ cp output/gCosm uat/gCosm
 cd uat
 pytest main.py
 
-rm -rf segment* playlist* test* sample*
+rm -rf segment* playlist* test* sample* rabbit.mkv newrabbitAV1.mkv newsample*
