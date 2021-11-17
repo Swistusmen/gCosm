@@ -16,6 +16,8 @@
 -add transcoding (mkv-> mp4)(mp4->mkv), (av1->mp4), (mp4->av1) DONE:
 -add scalling and video transforming IMPLEMENT: 
 8. Add server states,improve callbacks DONE:
+9. Add option requesting for file
+-make it optional
 
 Thoughts for future
 9. Add threads

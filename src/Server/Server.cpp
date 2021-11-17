@@ -1,7 +1,7 @@
 #include "Server.h"
 
 Server::Server(ProgramConfig driver, std::shared_ptr<PipelineManager> pipManager){
-    //#TODO -change when next servers will be added
+    //TODO: -change when next servers will be added
     if(driver.SProtocol==Protocol::RTSP)
         streamingServer= std::make_unique<RTSPServer>(driver,data,pipManager);
     else if(driver.SProtocol==Protocol::HLS){
@@ -10,7 +10,7 @@ Server::Server(ProgramConfig driver, std::shared_ptr<PipelineManager> pipManager
 }
 
 Server::~Server(){
-    
+    streamingServer.reset();
 }
 
 DataChunk Server::run(){

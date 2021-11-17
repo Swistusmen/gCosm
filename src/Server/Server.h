@@ -10,10 +10,10 @@
 class Server{
     public:
         Server(ProgramConfig driver, std::shared_ptr<PipelineManager> pipManager);
+
         ~Server();
 
         DataChunk run();
-
     private:
         std::unique_ptr<StreamingServer> streamingServer;
         DataChunk data;
