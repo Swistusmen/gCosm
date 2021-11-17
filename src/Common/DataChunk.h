@@ -1,8 +1,8 @@
 #pragma once
 #include <string>
 
-class DataChunk{
-
-    private:
-    std::string path;
+struct DataChunk{
+    DataChunk(std::string video="", std::string coordinates=""):videoPath(video),coordinatePath(coordinates){}
+    std::string videoPath;
+    std::string coordinatePath;
 };

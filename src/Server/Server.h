@@ -9,12 +9,12 @@
 
 class Server{
     public:
-        Server(ProgramConfig driver, std::shared_ptr<PipelineManager> pipManager);
+        Server(ProgramConfig driver, std::shared_ptr<PipelineManager> pipManager, std::shared_ptr<DataChunk> dataChunk=nullptr);
 
         ~Server();
 
         DataChunk run();
     private:
         std::unique_ptr<StreamingServer> streamingServer;
-        DataChunk data;
+        std::shared_ptr<DataChunk>  bin;
 };

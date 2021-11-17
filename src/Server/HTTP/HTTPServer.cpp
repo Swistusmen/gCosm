@@ -1,11 +1,5 @@
 #include "HTTPServer.h"
 
-using namespace utility;                    // Common utilities like string conversions
-using namespace web;                        // Common features like URIs.
-using namespace web::http;                  // Common HTTP functionality
-using namespace web::http::client;          // HTTP client features
-using namespace concurrency::streams; 
-
 HTTPServer::HTTPServer(std::string ip, std::string q):query(q),path(ip){}
 
 void HTTPServer::getCoordinates(std::string pat, std::string q){
@@ -14,10 +8,12 @@ void HTTPServer::getCoordinates(std::string pat, std::string q){
 
     if(pat=="")
         throw std::logic_error("Path is not initialized");
+    if(bin==nullptr)
+        throw  std::logic_error("HTTP need to have a data bin");
 
     auto fileStream=std::make_shared<ostream>();
 
-    pplx::task<void> requestTask=fstream::open_ostream(U("results.html")).then([=](ostream outFile)
+    pplx::task<void> requestTask=fstream::open_ostream(U(bin->coordinatePath)).then([=](ostream outFile)
     {
         *fileStream=outFile;
 

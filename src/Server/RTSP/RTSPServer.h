@@ -12,7 +12,7 @@
 
 class RTSPServer:public StreamingServer{
     public:
-        RTSPServer(ProgramConfig driver, DataChunk& chunk,std::shared_ptr<PipelineManager>pipManager);
+        RTSPServer(ProgramConfig driver, std::shared_ptr<DataChunk> chunk,std::shared_ptr<PipelineManager>pipManager);
         ~RTSPServer();
 
         void run() override;

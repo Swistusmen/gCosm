@@ -20,10 +20,11 @@ class HTTPServer{
         void getCoordinates(std::string ip="", std::string path="");
 
         void changePath(std::string p){path=p;}
+        void setBin(std::shared_ptr<DataChunk> chunk){bin=chunk;}
 
     private:
     std::string path="";
     std::string query="";
-        //DataChunk& bin;
+    std::shared_ptr<DataChunk> bin;
 };
 

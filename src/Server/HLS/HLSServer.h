@@ -7,7 +7,7 @@ static GMainLoop *loop=nullptr;
 
 class HLSServer: public StreamingServer{
     public:
-    HLSServer(ProgramConfig config, DataChunk& dataChunk,std::shared_ptr<PipelineManager> pipManager);
+    HLSServer(ProgramConfig config, std::shared_ptr<DataChunk> dataChunk,std::shared_ptr<PipelineManager> pipManager);
     ~HLSServer();
 
     void run() override;

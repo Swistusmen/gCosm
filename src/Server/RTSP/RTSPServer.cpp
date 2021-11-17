@@ -1,6 +1,6 @@
 #include "RTSPServer.h"
 
-RTSPServer::RTSPServer(ProgramConfig driver, DataChunk& chunk,std::shared_ptr<PipelineManager> pipManager):StreamingServer(driver,chunk,pipManager){
+RTSPServer::RTSPServer(ProgramConfig driver, std::shared_ptr<DataChunk> chunk,std::shared_ptr<PipelineManager> pipManager):StreamingServer(driver,chunk,pipManager){
     gst_init(NULL,NULL);
     loop=g_main_loop_new(NULL,FALSE);
     server=gst_rtsp_server_new();

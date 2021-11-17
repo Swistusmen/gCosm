@@ -11,7 +11,7 @@ struct ProgramConfig{
     bool DoSend=false;
     std::string AddressPath="";
     std::string IpAddress="";
-    //SensorData
+    bool SensorData=false;
     std::string message="";
     bool doStream=false;
     TransportContainer TContainer=TransportContainer::MP4;
@@ -81,6 +81,7 @@ struct ProgramConfig{
             +"Protocol: "+mapProctolToString(SProtocol)+"\n"
             +"DoSend: "+(DoSend?"yes":"no")+"\n"
             +"AddressPath: "+ AddressPath+"\n"
+            +"SensorData:"+(SensorData?"True":"False")+"\n"
             +"IpAddress: "+IpAddress+"\n"
             +"TransportContainer:"+mapTContainerToString(TContainer)+"\n"
             +"VideoCodec:"+mapVCodecToString(VCodec)+"\n"
@@ -96,6 +97,7 @@ struct ProgramConfig{
         SProtocol=mapStringToProctol(json["Protocol"]);
         DoSend= (json["DoSend"]=="send"||json["DoSend"]=="Send")?true:false;
         AddressPath=json["AddressPath"];
+        SensorData=((json["SensorData"]=="0"||json["SensorData"]=="false")?false:true);
         IpAddress=json["IpAddress"];
         TContainer=mapStringToTContainer(json["TransportContainer"]);
         VCodec=mapStringToVCodec(json["VideoCodec"]);

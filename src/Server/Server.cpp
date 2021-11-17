@@ -1,6 +1,6 @@
 #include "Server.h"
 
-Server::Server(ProgramConfig driver, std::shared_ptr<PipelineManager> pipManager){
+Server::Server(ProgramConfig driver, std::shared_ptr<PipelineManager> pipManager,std::shared_ptr<DataChunk> data){
     //TODO: -change when next servers will be added
     if(driver.SProtocol==Protocol::RTSP)
         streamingServer= std::make_unique<RTSPServer>(driver,data,pipManager);
